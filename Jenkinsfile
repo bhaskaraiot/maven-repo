@@ -5,20 +5,30 @@ stages {
 
 stage('compile stage') {
 steps {
-echo 'compiling....'
+withMaven(maven : 'apache-maven-3.5.0'
+          sh 'mvn clean compile'
 }
 }
 stage ('Testing Stage') {
 
 steps {
+withMaven(maven : 'apache-maven-3.5.0'
+          sh 'mvn test'
+}
+}
+          stage ('Installing Stage') {
 
-echo 'Testing.....'
+steps {
+withMaven(maven : 'apache-maven-3.5.0'
+          sh 'mvn install'
 }
 }
 stage ('Development stage'){
 steps {
-echo 'Deploying...'
+withMaven(maven : 'apache-maven-3.5.0'
+          sh 'mvn deploy'
 }
 }
 }
 }
+          }
